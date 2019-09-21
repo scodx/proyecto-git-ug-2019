@@ -1,0 +1,114 @@
+<h1>Ver el Historial de Confirmaciones</h1>
+<p>Después de haber hecho varias confirmaciones, o si has clonado un repositorio que ya tenía un histórico de confirmaciones, probablemente quieras mirar atrás para ver qué modificaciones se han llevado a cabo. La herramienta más básica y potente para hacer esto es el comando <code>git log</code>.</p>
+<p>Cuando ejecutes <code>git log</code> , deberías ver una salida similar a esta:</p>
+
+<code>
+	$ git log <br>
+	commit ca82a6dff817ec66f44342007202690a93763949 <br>
+	Author: Scott Chacon <schacon@gee-mail.com> <br>
+	Date:   Mon Mar 17 21:52:11 2008 -0700 <br>
+</code>
+	    <code>changed the version number</code>
+
+	<code>
+		commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 <br>
+		Author: Scott Chacon <schacon@gee-mail.com> <br>
+		Date:   Sat Mar 15 16:40:33 2008 -0700 <br>
+	</code>
+
+	    <code>removed unnecessary test</code>
+
+	<code>
+		commit a11bef06a3f659402fe7563abf99ad00de2209e6 <br>
+	Author: Scott Chacon <schacon@gee-mail.com> <br>
+	Date:   Sat Mar 15 10:31:28 2008 -0700 <br>
+	</code>
+
+	    <code>first commit</code>
+
+
+
+<p>Por defecto, si no pasas ningún parámetro, git log lista las confirmaciones hechas sobre ese repositorio en orden cronológico inverso. Es decir, las confirmaciones más recientes se muestran al principio. Como puedes ver, este comando lista cada confirmación con su suma de comprobación SHA-1, el nombre y dirección de correo del autor, la fecha y el mensaje de confirmación.</p>
+
+<p>El comando git log proporciona gran cantidad de opciones para mostrarte exactamente lo que buscas. Aquí veremos algunas de las más usadas.</p>
+
+<p>Una de las opciones más útiles es -p, que muestra las diferencias introducidas en cada confirmación. También puedes usar la opción -2, que hace que se muestren únicamente las dos últimas entradas del historial:</p>
+
+<code>
+	$ git log -p -2 <br>
+commit ca82a6dff817ec66f44342007202690a93763949 <br>
+Author: Scott Chacon <schacon@gee-mail.com> <br>
+Date:   Mon Mar 17 21:52:11 2008 -0700 <br>
+ <br>
+    changed the version number <br>
+ <br>
+diff --git a/Rakefile b/Rakefile <br>
+index a874b73..8f94139 100644 <br>
+--- a/Rakefile <br>
++++ b/Rakefile <br>
+@@ -5,7 +5,7 @@ require 'rake/gempackagetask' <br>
+ spec = Gem::Specification.new do |s| <br>
+     s.platform  =   Gem::Platform::RUBY <br>
+     s.name      =   "simplegit" <br>
+-    s.version   =   "0.1.0" <br>
++    s.version   =   "0.1.1" <br>
+     s.author    =   "Scott Chacon" <br>
+     s.email     =   "schacon@gee-mail.com" <br>
+     s.summary   =   "A simple gem for using Git in Ruby code." <br>
+ <br>
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 <br>
+Author: Scott Chacon <schacon@gee-mail.com> <br>
+Date:   Sat Mar 15 16:40:33 2008 -0700 <br>
+ <br>
+    removed unnecessary test <br>
+ <br>
+diff --git a/lib/simplegit.rb b/lib/simplegit.rb <br>
+index a0a60ae..47c6340 100644 <br>
+--- a/lib/simplegit.rb <br>
++++ b/lib/simplegit.rb <br>
+@@ -18,8 +18,3 @@ class SimpleGit <br>
+     end <br>
+ <br>
+ end <br>
+- <br>
+-if $0 == __FILE__ <br>
+-  git = SimpleGit.new <br>
+-  puts git.show <br>
+-end <br>
+\ No newline at end of file <br>
+</code>
+
+<p>Esta opción muestra la misma información, pero añadiendo tras cada entrada las diferencias que le corresponden. Esto resulta muy útil para revisiones de código, o para visualizar rápidamente lo que ha pasado en las confirmaciones enviadas por un colaborador. También puedes usar con git log una serie de opciones de resumen. Por ejemplo, si quieres ver algunas estadísticas de cada confirmación, puedes usar la opción <code>--stat</code>:</p>
+
+<code>
+	$ git log --stat <br>
+commit ca82a6dff817ec66f44342007202690a93763949 <br>
+Author: Scott Chacon <schacon@gee-mail.com> <br>
+Date:   Mon Mar 17 21:52:11 2008 -0700 <br>
+ <br>
+    changed the version number <br>
+ <br>
+ Rakefile | 2 +- <br>
+ 1 file changed, 1 insertion(+), 1 deletion(-) <br>
+ <br>
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 <br>
+Author: Scott Chacon <schacon@gee-mail.com> <br>
+Date:   Sat Mar 15 16:40:33 2008 -0700 <br>
+ <br>
+    removed unnecessary test <br>
+ <br>
+ lib/simplegit.rb | 5 ----- <br>
+ 1 file changed, 5 deletions(-) <br>
+ <br>
+commit a11bef06a3f659402fe7563abf99ad00de2209e6 <br>
+Author: Scott Chacon <schacon@gee-mail.com> <br>
+Date:   Sat Mar 15 10:31:28 2008 -0700 <br>
+ <br>
+    first commit <br>
+ <br>
+ README           |  6 ++++++ <br>
+ Rakefile         | 23 +++++++++++++++++++++++ <br>
+ lib/simplegit.rb | 25 +++++++++++++++++++++++++ <br>
+ 3 files changed, 54 insertions(+) <br>
+
+</code>
