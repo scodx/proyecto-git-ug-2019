@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <title>Proyecto - Git!</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">Curso de Git</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto sections">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="temas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Temas</a>
+            <div class="dropdown-menu" aria-labelledby="temas">
+              <a class="dropdown-item" href="includes/introduccion.html">Introducción</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto sections">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="alumnos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Alumnos</a>
+            <div class="dropdown-menu" aria-labelledby="alumnos">
+              <a class="dropdown-item" href="includes/OscarSanchez.html">Oscar Sanchez</a>
+              <a class="dropdown-item" href="#">otro alumno</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <main role="main">
+
+      <div class="container" id="content">
+
+
+      </div> <!-- /container -->
+
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+      $(document).ready(function(){
+
+        var $container = $('#content');
+
+        $container.load( 'README.md', function(){
+          $container.wrapInner( "<pre><code></pre></code>" );
+        })
+
+        $('a.dropdown-item').on('click', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          $container.load( $(this).attr('href') );
+        })
+      });
+    </script>
+
+  </body>
+</html>
